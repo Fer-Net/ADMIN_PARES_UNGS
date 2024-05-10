@@ -2,7 +2,7 @@
 
 # Primero debemos crear la imagen de docker:
 
-docker-compose -f docker-compose-local.yml up --build
+docker-compose -f docker-compose.yml up --build
 
 # configuramos el .env
 cp .env.example .env
