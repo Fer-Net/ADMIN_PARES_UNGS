@@ -373,9 +373,9 @@ return [
         ],
         ['header' => 'labels'],
         [
-            'text' => 'important',
+            'text' => 'Proveedor',
             'icon_color' => 'red',
-            'url' => '#',
+            'url' => '/provider',
         ],
         [
             'text' => 'warning',
