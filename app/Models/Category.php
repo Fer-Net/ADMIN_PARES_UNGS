@@ -7,14 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class Provider extends Authenticatable
+class Category extends Authenticatable
 {
     use HasFactory, Notifiable;
-    protected $table = 'providers';
+    protected $table = 'categories';
 
-     // Definir la relación muchos a muchos con Category
-     public function categories()
-     {
-         return $this->belongsToMany(Category::class, 'category_provider');
-     }
+    public function providers()
+    {
+        return $this->belongsToMany(Provider::class, 'category_provider');
+    }
 }

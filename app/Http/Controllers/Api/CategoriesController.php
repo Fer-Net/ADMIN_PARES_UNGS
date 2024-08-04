@@ -6,7 +6,7 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\SuccessResponse;
-use App\Models\Provider;
+use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 
 class ProvidersController
@@ -19,8 +19,8 @@ class ProvidersController
     public function getList(Request $request)
     {
         try {
-            $providers = Provider::all();
-            return new SuccessResponse('Providers', $providers);
+            $categories = Category::all();
+            return new SuccessResponse('Categorias', $categories);
         } catch (Exception $e) {
 
         }
@@ -31,11 +31,11 @@ class ProvidersController
      * @param int $producerID
      * @return API Response with data
      */
-    public function postDelete($providerID)
+    public function postDelete($categoryID)
     {
         try {
 
-            $data = Provider::find($providerID);
+            $data = Category::find($categoryID);
 
             
             if (null === $data) {
@@ -61,52 +61,9 @@ class ProvidersController
             
             $data = $request->all();
           
-            $provider = new Provider();
-            $provider->name = $data['newNameProvider'];
-            $provider->description = $data['newDescription'];
-            $provider->code = $data['newCode'];
-            $provider->url_cancel_subscription = $data['newUrlCancelation'];
-            $provider->active = isset($data['checkboxActive']) ? 1 : 0;
-            $provider->url = $data['newUrl'];
-            $provider->order = 100;
-           
-            if (isset($data['image']) && $request->file('image')) {
-                $extWebp = $request->file('image')->getClientOriginalExtension();
-                $nameWebp =  pathinfo($request->file('image')->getClientOriginalName(), PATHINFO_FILENAME);
-                $nameWebp = preg_replace('([^A-Za-z0-9])', '', $nameWebp);
-                $nameWebp = time() . "_" . $nameWebp;
-                $nameWebp = substr($nameWebp, 0, 45);
-                $nameImageWebp = $nameWebp .".". $extWebp;
-                Storage::disk('s3-images')->putFileAs(env('BUCKET_ENDPOINT').'/storage/providers/',$request->file('image'),$nameImageWebp);
-                $provider->image = $nameImageWebp;
-            }
-           
-            
-           ($data['country'] != '0') ? $provider->country_id = (integer) $data['country']: NULL;
-           
-           $provider->save();
-
-           if(isset($data['checkboxContent'])) {
-            
-            if(!isset($data['categories']))
-                    {
-                        throw new Exception('Agregue categorias', 12);
-                    }
-                    
-                    if(!isset($data['plays']))
-                    {
-                        throw new Exception('Agregue obras', 12);
-                    }
-
-            $provider->limited_category = 1;
-
-            $provider->plays()->sync($data['plays']);
-            $provider->plays()->updateExistingPivot($data['plays'], ['status' => 1]);
-
-            $provider->categories()->sync($data['categories']);
-
-           $provider->save();
-           }
+            $category = new Category();
+            $category->name = $data['newName'];
+             
 
 
             return new SuccessResponse('Se guardo ok');
