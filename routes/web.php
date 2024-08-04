@@ -20,7 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/provider', [ProviderController::class, 'getIndex'])->name('providers.index');
     Route::get('/provider/create', [ProviderController::class, 'getCreate'])->name('providers.create');
-    Route::post('/provider/edit', [ProviderController::class, 'postEdit'])->name('providers.edit');
+    Route::get('/provider/edit/{id}', [ProviderController::class, 'getEdit'])->name('providers.edit');
     Route::post('/provider/delete', [ProviderController::class, 'postDelete'])->name('providers.delete');
 
     Route::get('/category',[CategoryController::class, 'getIndex'])->name('category.index');
