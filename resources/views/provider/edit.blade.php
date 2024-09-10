@@ -10,10 +10,9 @@
         <h1>Editar Proveedor</h1>
 
         <!-- Formulario para editar un proveedor -->
-        <form id="provider-form">
+        <form id="form">
             @csrf
-            @method('PUT') <!-- Para enviar una solicitud de actualización -->
-
+            
             <div class="form-row">
                 <div class="form-group col-12 col-md-6">
                     <label for="nombre">Nombre</label>
@@ -187,7 +186,7 @@
 @section('js')
 <!-- Incluir jQuery desde el CDN -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>    
      $(document).ready(function() {
         $('#distrito').on('change', function() {
@@ -203,5 +202,39 @@
         if ($('#distrito').val() === '15') {
             $('#otro-distrito-container').show();
         }
+    });
+    $("#form").on('submit', function(e) {
+        e.preventDefault();
+       
+        $.ajax({
+            method: "POST",
+            url: "{{url('api/providers/edit/'.$provider->id)}}",
+            data: new FormData($('#form')[0]),
+            processData: false,
+            contentType: false,
+	       
+        }).done(function(response) {
+
+						if (!response.success) {
+                         
+								Swal.fire("Oops...", response.message, "error");
+						} else {
+                      
+								Swal.fire({
+										title: "Éxito",
+										text: "El proveedor se ha editado correctamente",
+										icon: "success",
+										showCancelButton: false,
+										confirmButtonColor: "#DD6B55",
+										confirmButtonText: "Ok",
+									}).then(function() {
+											
+											document.location.href = "{{ url('provider') }}";										 
+										});
+
+
+						}
+
+        });
     }); </script>
 @stop
