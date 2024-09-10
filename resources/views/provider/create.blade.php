@@ -194,7 +194,7 @@
     <script> 
       $(document).ready(function() {
                 $('#distrito').on('change', function() {
-                    if ($(this).val() === 'Otro') { // "Otro" se corresponde con el valor '15'
+                    if ($(this).val() === '15') { // "Otro" se corresponde con el valor '15'
                         $('#otro-distrito-container').show();
                     } else {
                         $('#otro-distrito-container').hide();

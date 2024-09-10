@@ -62,27 +62,6 @@
     <input type="text" class="form-control" id="otro-distrito" name="otro-distrito" value="{{ $provider->distrito == '15' ? $provider->otro_distrito : '' }}">
 </div>
 
-<!-- Incluir jQuery desde el CDN -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#distrito').on('change', function() {
-            if ($(this).val() === '15') {
-                $('#otro-distrito-container').show();
-            } else {
-                $('#otro-distrito-container').hide();
-                $('#otro-distrito').val(''); // Limpiar el campo de texto si se oculta
-            }
-        });
-
-        // Mostrar el campo de texto si el valor inicial es '15' (Otro)
-        if ($('#distrito').val() === '15') {
-            $('#otro-distrito-container').show();
-        }
-    });
-</script>
-
-
                 <div class="form-group col-12 col-md-6">
                     <label for="direccion">Dirección</label>
                     <input type="text" class="form-control" id="direccion" name="direccion" value="{{ $provider->direccion }}" required>
@@ -206,5 +185,23 @@
 @stop
 
 @section('js')
-    <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+<!-- Incluir jQuery desde el CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>    
+     $(document).ready(function() {
+        $('#distrito').on('change', function() {
+            if ($(this).val() === '15') {
+                $('#otro-distrito-container').show();
+            } else {
+                $('#otro-distrito-container').hide();
+                $('#otro-distrito').val(''); // Limpiar el campo de texto si se oculta
+            }
+        });
+
+        // Mostrar el campo de texto si el valor inicial es '15' (Otro)
+        if ($('#distrito').val() === '15') {
+            $('#otro-distrito-container').show();
+        }
+    }); </script>
 @stop
