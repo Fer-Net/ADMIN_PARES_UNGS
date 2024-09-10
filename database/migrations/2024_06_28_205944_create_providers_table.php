@@ -15,8 +15,9 @@ return new class extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('descripcion')->nullable();
-            $table->string('tipo');
-            $table->string('distrito');
+            $table->integer('tipo');
+            $table->integer('distrito');
+            $table->string('otro_distrito')->nullable();
             $table->string('direccion');
             $table->string('email');
             $table->string('phone');

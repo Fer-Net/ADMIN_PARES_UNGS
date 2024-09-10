@@ -9,70 +9,56 @@
         </div>
         <h1>Crear Proveedor</h1>
 
-        <form id="provider-form">
+        <form class="horizontal-form" name="form" id="form" method="post">
             @csrf
             <div class="form-row">
-                <div class="form-group col-12 col-md-6">
+                <div class="form-group  col-md-6">
                     <label for="nombre">Nombre</label>
                     <input type="text" class="form-control" id="nombre" name="nombre" required>
                 </div>
-                <div class="form-group col-12 col-md-6">
+                <div class="form-group  col-md-6">
                     <label for="tipo">Tipo</label>
                     <select class="form-control" id="tipo" name="tipo" required>
                         <option value="">Seleccionar</option> <!-- Opción por defecto -->
-                        <option value="Entidades mutuales y cooperativas registradas en el INAES">Entidades mutuales y cooperativas registradas en el INAES</option>
-                        <option value="Emprendimientos asociativos con matrícula en trámite (precooperativas)">Emprendimientos asociativos con matrícula en trámite (precooperativas)</option>
-                        <option value="Emprendimientos asociativos productivos o de servicios de la Economía Popular">Emprendimientos asociativos productivos o de servicios de la Economía Popular</option>
-                        <option value="Microempresas locales / emprendimientos familiares">Microempresas locales / emprendimientos familiares</option>
+                        <option value="1">Entidades mutuales y cooperativas registradas en el INAES</option>
+                        <option value="2">Emprendimientos asociativos con matrícula en trámite (precooperativas)</option>
+                        <option value="3">Emprendimientos asociativos productivos o de servicios de la Economía Popular</option>
+                        <option value="4">Microempresas locales / emprendimientos familiares</option>
                     </select>
                 </div>
+            </div>
             <div class="form-row">
-                <div class="form-group col-12">
+                <div class="form-group col-md-12">
                     <label for="descripcion">Descripción</label>
                     <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
                 </div>
             </div>
             <div class="form-row">
-            <div class="form-group col-12 col-md-6">
+            <div class="form-group col-md-6">
             <label for="distrito">Distrito</label>
             <select class="form-control" id="distrito" name="distrito" required>
                 <option value="">Seleccionar</option> <!-- Opción por defecto -->
-                <option value="Malvinas Argentinas">Malvinas Argentinas</option>
-                <option value="San Miguel">San Miguel</option>
-                <option value="José C. Paz">José C. Paz</option>
-                <option value="Pilar">Pilar</option>
-                <option value="Hurlingham">Hurlingham</option>
-                <option value="Escobar">Escobar</option>
-                <option value="Ituzaingó">Ituzaingó</option>
-                <option value="Morón">Morón</option>
-                <option value="Tigre">Tigre</option>
-                <option value="Lujan">Lujan</option>
-                <option value="Gral Rodriguez">Gral Rodriguez</option>
-                <option value="San Martin">San Martin</option>
-                <option value="Moreno">Moreno</option>
-                <option value="Tres de Febrero">Tres de Febrero</option>
-                <option value="Otro">Otro</option>
+                <option value="1">Malvinas Argentinas</option>
+                <option value="2">San Miguel</option>
+                <option value="3">José C. Paz</option>
+                <option value="4">Pilar</option>
+                <option value="5">Hurlingham</option>
+                <option value="6">Escobar</option>
+                <option value="7">Ituzaingó</option>
+                <option value="8">Morón</option>
+                <option value="9">Tigre</option>
+                <option value="10">Lujan</option>
+                <option value="11">Gral Rodriguez</option>
+                <option value="12">San Martin</option>
+                <option value="13">Moreno</option>
+                <option value="14">Tres de Febrero</option>
+                <option value="15">Otro</option>
             </select>
         </div>
         <div class="form-group col-12 col-md-6" id="otro-distrito-container" style="display:none;">
             <label for="otro-distrito">Especificar otro distrito</label>
-            <input type="text" class="form-control" id="otro-distrito" name="otro-distrito">
+            <input type="text" class="form-control" id="otro_distrito" name="otro_distrito">
         </div>
-
-        <!-- Incluir jQuery desde el CDN -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $('#distrito').on('change', function() {
-                    if ($(this).val() === 'Otro') { // "Otro" se corresponde con el valor '15'
-                        $('#otro-distrito-container').show();
-                    } else {
-                        $('#otro-distrito-container').hide();
-                        $('#otro-distrito').val(''); // Limpiar el campo de texto si se oculta
-                    }
-                });
-            });
-        </script>
 
                 <div class="form-group col-12 col-md-6">
                     <label for="direccion">Dirección</label>
@@ -86,7 +72,7 @@
                 </div>
                 <div class="form-group col-12 col-md-6">
                     <label for="phone">Teléfono</label>
-                    <input type="text" class="form-control" id="phone" name="phone" required>
+                    <input type="number" class="form-control" id="phone" name="phone" required>
                 </div>
             </div>
             <div class="form-row">
@@ -120,7 +106,7 @@
                 </div>
                 <div class="form-group col-12 col-md-6">
                     <label for="cuit">CUIT</label>
-                    <input type="text" class="form-control" id="cuit" name="cuit">
+                    <input type="number" class="form-control" id="cuit" name="cuit">
                 </div>
             </div>
             <div class="form-row">
@@ -190,41 +176,12 @@
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
     </div>
+        <!-- Incluir jQuery desde el CDN -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Incluir Axios desde el CDN -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script>
-        document.getElementById('provider-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevenir el envío del formulario por defecto
-            
-            const form = event.target;
-            const formData = new FormData(form);
-
-            axios.post('{{ url('api/providers') }}', formData)
-                .then(response => {
-                    alert('Proveedor creado exitosamente');
-                    form.reset(); // Limpiar el formulario después de enviar los datos
-                })
-                .catch(error => {
-                    console
-
-                    console.error('Hubo un error al crear el proveedor:', error);
-                    if (error.response && error.response.data && error.response.data.errors) {
-                        // Mostrar errores específicos del servidor
-                        const errors = error.response.data.errors;
-                        let errorMessages = '';
-                        for (const key in errors) {
-                            if (errors.hasOwnProperty(key)) {
-                                errorMessages += errors[key].join(', ') + '\n';
-                            }
-                        }
-                        alert('Errores al crear el proveedor:\n' + errorMessages);
-                    } else {
-                        alert('Error al crear el proveedor. Por favor, intente nuevamente.');
-                    }
-                });
-        });
-    </script>
+   
 @endsection
 
 
@@ -234,5 +191,52 @@
 @stop
 
 @section('js')
-    <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+    <script> 
+      $(document).ready(function() {
+                $('#distrito').on('change', function() {
+                    if ($(this).val() === 'Otro') { // "Otro" se corresponde con el valor '15'
+                        $('#otro-distrito-container').show();
+                    } else {
+                        $('#otro-distrito-container').hide();
+                        $('#otro_distrito').val(''); // Limpiar el campo de texto si se oculta
+                    }
+                });
+            });
+
+$("#form").on('submit', function(e) {
+        e.preventDefault();
+        //showSpinner();
+        $.ajax({
+            method: "POST",
+            url: "{{url('api/providers/create')}}",
+            data: new FormData($('#form')[0]),
+            processData: false,
+            contentType: false,
+	        error: function (error) {
+	               alert(console.info(error.responseJSON));
+	        },
+        }).done(function(response) {
+
+						if (!response.success) {
+								Swal.fire("Oops...", response.message, "error");
+						} else {
+								Swal.fire({
+										title: "Éxito",
+										text: "La licencia se ha creado correctamente",
+										icon: "success",
+										showCancelButton: false,
+										confirmButtonColor: "#DD6B55",
+										confirmButtonText: "Ok",
+									}).then(function() {
+											
+											document.location.href = "{{ url('admin/licenses/list') }}";										 
+										});
+
+
+						}
+
+        });
+    });
+    
+    </script>
 @stop

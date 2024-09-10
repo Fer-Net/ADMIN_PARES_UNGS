@@ -22,9 +22,10 @@ class ProvidersTableSeeder extends Seeder
         \DB::table('providers')->insert(array (
             0 => 
             array (
+                'id' => 1,
                 'nombre' => 'Cooperativa de trabajo Emplastcoop LTDA',
-                'tipo' => 1,
-                'distrito' => 1,
+                'tipo' => 3,
+                'distrito' => 5,
                 'direccion' => 'Descartes 4265',
                 'descripcion' => null,
                 'phone' => '1568626422',
