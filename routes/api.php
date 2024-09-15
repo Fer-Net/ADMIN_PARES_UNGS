@@ -13,5 +13,7 @@ Route::get('/providers', [ProvidersController::class, 'getList']);
 Route::group(['middleware' => ['web', 'auth:sanctum']], function () {
     Route::post('/providers/create', [ProvidersController::class, 'postCreate']);
     Route::post('/providers/edit/{id}', [ProvidersController::class, 'postEdit']);
+    Route::post('/providers/delete/{id}', [ProvidersController::class, 'postDelete']);
+
 });
 

@@ -86,7 +86,7 @@
                 </div>
                 <div class="form-group col-12">
                     <label for="pagina_web">Página Web</label>
-                    <input type="url" class="form-control" id="pagina_web" name="pagina_web">
+                    <input type="text" class="form-control" id="pagina_web" name="pagina_web">
                 </div>
             </div>
             <div class="form-row">
@@ -206,7 +206,7 @@
 
 $("#form").on('submit', function(e) {
         e.preventDefault();
-        showSpinner();
+        //showSpinner();
         $.ajax({
             method: "POST",
             url: "{{url('api/providers/create')}}",
