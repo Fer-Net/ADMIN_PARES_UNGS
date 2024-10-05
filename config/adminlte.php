@@ -378,14 +378,14 @@ return [
             'url' => '/provider',
         ],
         [
-            'text' => 'warning',
+            'text' => 'Categorias',
             'icon_color' => 'yellow',
-            'url' => '#',
+            'url' => '/category',
         ],
         [
-            'text' => 'information',
+            'text' => 'Sub-categorias',
             'icon_color' => 'cyan',
-            'url' => '#',
+            'url' => '/subcategory',
         ],
     ],
 

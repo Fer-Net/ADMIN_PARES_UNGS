@@ -1,20 +1,33 @@
-@extends('adminlte::page')
+<div class="modal fade" id="modalAddCategory">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+              <h4 class="modal-title">Crear nueva Categoria</h4>
+          </div>
+          <div class="modal-body">
+            <form action="#" id="formAddCategory" name="formAddCategory" class="form-horizontal form-row-seperated">
 
-@section('title', 'Dashboard')
+                  <div class="form-body">
+                      <div class="form-group">
+                          <label class="control-label col-md-3">Nombre</label>
+                          <div class="col-md-9">
+                              <input type="text" id="name" name="name" class="form-control">
+                          </div>
+                      </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn red-sunglo">Guardar</button>
+          </div>
+            </form>
+      </div>
+      <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+</div>
 
-@section('content_header')
-    <h1>Dashboard</h1>
-@stop
+<script>
 
-@section('content')
-    <p>Welcome to this beautiful admin panel.</p>
-@stop
-
-@section('css')
-    {{-- Add here extra stylesheets --}}
-    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
-@stop
-
-@section('js')
-    <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
-@stop
+</script>

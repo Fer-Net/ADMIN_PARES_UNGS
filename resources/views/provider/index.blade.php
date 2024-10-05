@@ -71,9 +71,9 @@
         });
 
         $(document).on('click', '.remove-data', function() {
-            //        var id = $(this).parents('tr').attr('id');
+
     var id = $(this).parents('tr').find('td:eq(0)').text(); // obtener el valor de la columna nombre
-    console.log(id)
+
     Swal.fire({
         title: "Eliminar el proveedor?",
         text: "Se borrará permanetemente el proveedor",
@@ -82,15 +82,26 @@
         confirmButtonColor: "red",
         confirmButtonText: "Si, borrar",
         showLoaderOnConfirm: true,
-        
+
         preConfirm: () => {
-            $.post("{{url('api/providers/')}}" + "/delete/" + id, function(data) {
-                reloadDataTable()
-                Swal.fire("Noticia eliminada",
-                    "Se ha eliminado correctamente la pregunta",
-                    "success");
+    return axios.post("{{ url('api/providers/') }}" + "/delete/" + id)
+        .then(response => {
+            Swal.fire({
+                title: "Noticia eliminada",
+                text: "Se ha eliminado correctamente la pregunta",
+                icon: "success",
+                confirmButtonText: "OK"
+            }).then(() => {
+                location.reload();  // This reloads the page when "OK" is pressed
             });
-        }
+                
+        })
+        .catch(error => {
+            Swal.fire("Error",
+                "Ocurrió un error al eliminar la pregunta",
+                "error");
+        });
+}
     });
     return false;
 });
