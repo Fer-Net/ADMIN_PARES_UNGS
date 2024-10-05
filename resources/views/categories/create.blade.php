@@ -1,33 +1,73 @@
 <div class="modal fade" id="modalAddCategory">
-  <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-              <h4 class="modal-title">Crear nueva Categoria</h4>
-          </div>
-          <div class="modal-body">
-            <form action="#" id="formAddCategory" name="formAddCategory" class="form-horizontal form-row-seperated">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title" style="text-align: left; margin-left: 0;">Crear nueva categoría</h4>
+            </div>
+            <div class="modal-body">
+                <form id="formAddCategory" name="formAddCategory" class="form-horizontal form-row-seperated">
+                    <div class="form-body">
+                        <div class="form-group row"> 
+                            <label class="control-label col-md-3">Nombre de categoría</label>
+                            <div class="col-md-9">
+                                <input type="text" id="name" name="name" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group row"> 
+                            <label class="control-label col-md-3">Descripción</label>
+                            <div class="col-md-9">
+                                <input type="text" id="description" name="description" class="form-control">
+                            </div>
+                        </div>
+                        <!-- Token CSRF -->
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-                  <div class="form-body">
-                      <div class="form-group">
-                          <label class="control-label col-md-3">Nombre</label>
-                          <div class="col-md-9">
-                              <input type="text" id="name" name="name" class="form-control">
-                          </div>
-                      </div>
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn red-sunglo">Guardar</button>
-          </div>
-            </form>
-      </div>
-      <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-</div>
+
 
 <script>
+$(document).ready(function() {
+    $("#formAddCategory").on('submit', function(e) {
+        e.preventDefault(); 
+        
 
+        var formData = new FormData($('#formAddCategory')[0]);
+
+        $.ajax({
+            method: "POST",
+            url: "{{ url('api/categories/create') }}",
+            data: formData,
+            processData: false,
+            contentType: false,
+        }).done(function(response) {
+            if (!response.success) {
+                Swal.fire("Oops...", response.message, "error");
+            } else {
+                Swal.fire({
+                    title: "Éxito",
+                    text: "La categoría se ha creado correctamente",
+                    icon: "success",
+                    showCancelButton: false,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Ok",
+                }).then(function() {
+                    document.location.href = "{{ url('categories') }}";  
+                });
+            }
+        }).fail(function(xhr) {
+            console.error(xhr.responseText);
+            Swal.fire("Error", "Ocurrió un error al crear la categoría", "error");
+        });
+    });
+});
 </script>
