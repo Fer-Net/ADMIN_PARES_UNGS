@@ -86,7 +86,7 @@
                 </div>
                 <div class="form-group col-12">
                     <label for="pagina_web">Página Web</label>
-                    <input type="url" class="form-control" id="pagina_web" name="pagina_web">
+                    <input type="text" class="form-control" id="pagina_web" name="pagina_web">
                 </div>
             </div>
             <div class="form-row">
@@ -176,11 +176,6 @@
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
     </div>
-        <!-- Incluir jQuery desde el CDN -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- Incluir Axios desde el CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
    
 @endsection
 
@@ -191,10 +186,19 @@
 @stop
 
 @section('js')
+
+ <!-- Incluir jQuery desde el CDN -->
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <!-- Incluir DataTables desde el CDN -->
+ <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+ <!-- Incluir Axios desde el CDN -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script> 
       $(document).ready(function() {
                 $('#distrito').on('change', function() {
-                    if ($(this).val() === 'Otro') { // "Otro" se corresponde con el valor '15'
+                    if ($(this).val() === '15') { // "Otro" se corresponde con el valor '15'
                         $('#otro-distrito-container').show();
                     } else {
                         $('#otro-distrito-container').hide();
@@ -212,24 +216,24 @@ $("#form").on('submit', function(e) {
             data: new FormData($('#form')[0]),
             processData: false,
             contentType: false,
-	        error: function (error) {
-	               alert(console.info(error.responseJSON));
-	        },
+	       
         }).done(function(response) {
 
 						if (!response.success) {
+                         
 								Swal.fire("Oops...", response.message, "error");
 						} else {
+                      
 								Swal.fire({
 										title: "Éxito",
-										text: "La licencia se ha creado correctamente",
+										text: "El proveedor se ha creado correctamente",
 										icon: "success",
 										showCancelButton: false,
 										confirmButtonColor: "#DD6B55",
 										confirmButtonText: "Ok",
 									}).then(function() {
 											
-											document.location.href = "{{ url('admin/licenses/list') }}";										 
+											document.location.href = "{{ url('provider') }}";										 
 										});
 
 
