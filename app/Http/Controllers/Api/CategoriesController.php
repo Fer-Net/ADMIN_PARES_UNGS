@@ -22,7 +22,7 @@ class CategoriesController
         try {
             $categories = Category::all();
           
-            return new SuccessResponse('Providers', $categories);
+            return new SuccessResponse('categories', $categories);
         } catch (Exception $e) {
 
         }
@@ -60,22 +60,27 @@ class CategoriesController
     public function postCreate(Request $request)
     {
         try {
-            
-            
-            $data = $request->all();
-            dd($data);
-           $provider = Provider::create([
-               'name' => $data['name'],       
-               'description' => $data['description'],
-           ]);
-           
-
-
-            return new SuccessResponse('Se guardo ok', $provider);
+            // Validación de los datos
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255',
+                'description' => 'nullable|string',
+            ]);
+    
+            // Si deseas ver los datos recibidos
+            // dd($validatedData);
+    
+            // Crear el proveedor
+            $category = Category::create([
+                'name' => $validatedData['name'],
+                'description' => $validatedData['description'],
+            ]);
+    
+            return new SuccessResponse('Se guardo ok', $category);
         } catch (Exception $e) {
-            //return ModelResponse::withException($e);
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+    
 
     /**
      * @desc Edit element in DB

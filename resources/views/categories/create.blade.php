@@ -1,3 +1,5 @@
+
+
 <div class="modal fade" id="modalAddCategory">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -6,7 +8,7 @@
                 <h4 class="modal-title" style="text-align: left; margin-left: 0;">Crear nueva categoría</h4>
             </div>
             <div class="modal-body">
-                <form id="formAddCategory" name="formAddCategory" class="form-horizontal form-row-seperated">
+                <form id="form" name="formAddCategory" class="form-horizontal form-row-seperated">
                     <div class="form-body">
                         <div class="form-group row"> 
                             <label class="control-label col-md-3">Nombre de categoría</label>
@@ -35,39 +37,56 @@
 
 
 
-<script>
-$(document).ready(function() {
-    $("#formAddCategory").on('submit', function(e) {
-        e.preventDefault(); 
-        
+@section('js')
 
-        var formData = new FormData($('#formAddCategory')[0]);
+ <!-- Incluir jQuery desde el CDN -->
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <!-- Incluir DataTables desde el CDN -->
+ <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+ <!-- Incluir Axios desde el CDN -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script> 
+
+
+$("#form").on('submit', function(e) {
+        e.preventDefault();
+        //showSpinner();
         $.ajax({
             method: "POST",
-            url: "{{ url('api/categories/create') }}",
-            data: formData,
+            url: "{{url('api/categories/create')}}",
+            data: new FormData($('#form')[0]),
             processData: false,
             contentType: false,
+	       
         }).done(function(response) {
-            if (!response.success) {
-                Swal.fire("Oops...", response.message, "error");
-            } else {
-                Swal.fire({
-                    title: "Éxito",
-                    text: "La categoría se ha creado correctamente",
-                    icon: "success",
-                    showCancelButton: false,
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "Ok",
-                }).then(function() {
-                    document.location.href = "{{ url('categories') }}";  
-                });
-            }
-        }).fail(function(xhr) {
-            console.error(xhr.responseText);
-            Swal.fire("Error", "Ocurrió un error al crear la categoría", "error");
+
+						if (!response.success) {
+                         
+								Swal.fire("Oops...", response.message, "error");
+						} else {
+                      
+								Swal.fire({
+										title: "Éxito",
+										text: "La categoría se ha creado correctamente",
+										icon: "success",
+										showCancelButton: false,
+										confirmButtonColor: "#DD6B55",
+										confirmButtonText: "Ok",
+									}).then(function() {
+											
+											document.location.href = "{{ url('category') }}";	
+                                            //cerrar el mmodal
+                                            //actualizar la tabla con ajax
+
+										});
+
+
+						}
+
         });
     });
-});
-</script>
+    
+    </script>
+@stop

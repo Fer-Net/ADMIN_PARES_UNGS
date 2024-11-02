@@ -12,4 +12,10 @@ class Category extends Authenticatable
 {
     use HasFactory, Notifiable, SoftDeletes;
     protected $table = 'categories';
+
+    protected $fillable = [
+        'name',        
+        'description', 
+        
+    ];
 }
