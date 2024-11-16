@@ -29,44 +29,53 @@
     </select>
 </div>
 
-            <div class="form-row">
-                <div class="form-group col-12">
-                    <label for="descripcion">Descripción</label>
-                    <textarea class="form-control" id="descripcion" name="descripcion">{{ $provider->descripcion }}</textarea>
-                </div>
-            </div>
-            <div class="form-row">
-            <div class="form-group col-12 col-md-6">
-    <label for="distrito">Distrito</label>
-    <select class="form-control" id="distrito" name="distrito" required>
-        <option value="1" {{ $provider->distrito == '1' ? 'selected' : '' }}>Malvinas Argentinas</option>
-        <option value="2" {{ $provider->distrito == '2' ? 'selected' : '' }}>San Miguel</option>
-        <option value="3" {{ $provider->distrito == '3' ? 'selected' : '' }}>José C. Paz</option>
-        <option value="4" {{ $provider->distrito == '4' ? 'selected' : '' }}>Pilar</option>
-        <option value="5" {{ $provider->distrito == '5' ? 'selected' : '' }}>Hurlingham</option>
-        <option value="6" {{ $provider->distrito == '6' ? 'selected' : '' }}>Escobar</option>
-        <option value="7" {{ $provider->distrito == '7' ? 'selected' : '' }}>Ituzaingó</option>
-        <option value="8" {{ $provider->distrito == '8' ? 'selected' : '' }}>Morón</option>
-        <option value="9" {{ $provider->distrito == '9' ? 'selected' : '' }}>Tigre</option>
-        <option value="10" {{ $provider->distrito == '10' ? 'selected' : '' }}>Lujan</option>
-        <option value="11" {{ $provider->distrito == '11' ? 'selected' : '' }}>Gral Rodriguez</option>
-        <option value="12" {{ $provider->distrito == '12' ? 'selected' : '' }}>San Martin</option>
-        <option value="13" {{ $provider->distrito == '13' ? 'selected' : '' }}>Moreno</option>
-        <option value="14" {{ $provider->distrito == '14' ? 'selected' : '' }}>Tres de Febrero</option>
-        <option value="15" {{ $provider->distrito == '15' ? 'selected' : '' }}>Otro</option>
-    </select>
-</div>
-<div class="form-group col-12 col-md-6" id="otro-distrito-container" style="display: {{ $provider->distrito == '15' ? 'block' : 'none' }};">
-    <label for="otro-distrito">Especificar otro distrito</label>
-    <input type="text" class="form-control" id="otro-distrito" name="otro-distrito" value="{{ $provider->distrito == '15' ? $provider->otro_distrito : '' }}">
-</div>
+
+            <div class="form-row col-12">
+                    <div class="form-group col-12"> 
+						<label for="descripcion">Descripción</label>
+						<textarea class="form-control" id="descripcion" name="descripcion">{{ $provider->descripcion }}</textarea>
+					</div>
+			</div>
+			
+            <div class="form-row col-12">
+
+				<div class="form-group col-12 col-md-6">
+					<label for="distrito">Distrito</label>
+					<select class="form-control" id="distrito" name="distrito" required>
+						<option value="1" {{ $provider->distrito == '1' ? 'selected' : '' }}>Malvinas Argentinas</option>
+						<option value="2" {{ $provider->distrito == '2' ? 'selected' : '' }}>San Miguel</option>
+						<option value="3" {{ $provider->distrito == '3' ? 'selected' : '' }}>José C. Paz</option>
+						<option value="4" {{ $provider->distrito == '4' ? 'selected' : '' }}>Pilar</option>
+						<option value="5" {{ $provider->distrito == '5' ? 'selected' : '' }}>Hurlingham</option>
+						<option value="6" {{ $provider->distrito == '6' ? 'selected' : '' }}>Escobar</option>
+						<option value="7" {{ $provider->distrito == '7' ? 'selected' : '' }}>Ituzaingó</option>
+						<option value="8" {{ $provider->distrito == '8' ? 'selected' : '' }}>Morón</option>
+						<option value="9" {{ $provider->distrito == '9' ? 'selected' : '' }}>Tigre</option>
+						<option value="10" {{ $provider->distrito == '10' ? 'selected' : '' }}>Lujan</option>
+						<option value="11" {{ $provider->distrito == '11' ? 'selected' : '' }}>Gral Rodriguez</option>
+						<option value="12" {{ $provider->distrito == '12' ? 'selected' : '' }}>San Martin</option>
+						<option value="13" {{ $provider->distrito == '13' ? 'selected' : '' }}>Moreno</option>
+						<option value="14" {{ $provider->distrito == '14' ? 'selected' : '' }}>Tres de Febrero</option>
+						<option value="15" {{ $provider->distrito == '15' ? 'selected' : '' }}>Otro</option>
+					</select>
+				</div>
+				
+				<div class="form-group col-12 col-md-6" id="otro-distrito-container" style="display: {{ $provider->distrito == '15' ? 'block' : 'none' }};">
+					<label for="otro-distrito">Especificar otro distrito</label>
+					<input type="text" class="form-control" id="otro-distrito" name="otro-distrito" value="{{ $provider->distrito == '15' ? $provider->otro_distrito : '' }}">
+				</div>
 
                 <div class="form-group col-12 col-md-6">
                     <label for="direccion">Dirección</label>
                     <input type="text" class="form-control" id="direccion" name="direccion" value="{{ $provider->direccion }}" required>
                 </div>
+				
+				
             </div>
-            <div class="form-row">
+			
+			
+            <div class="form-row col-12">
+
                 <div class="form-group col-12 col-md-6">
                     <label for="email">Email</label>
                     <input type="email" class="form-control" id="email" name="email" value="{{ $provider->email }}" required>
@@ -76,6 +85,7 @@
                     <input type="text" class="form-control" id="phone" name="phone" value="{{ $provider->phone }}" required>
                 </div>
             </div>
+			
             <div class="form-row">
                 <div class="form-group col-12">
                     <label for="existen_registros_compras_ungs">¿Existen registros de compras UNGS?</label>
@@ -90,7 +100,8 @@
                     <input type="url" class="form-control" id="pagina_web" name="pagina_web" value="{{ $provider->pagina_web }}">
                 </div>
             </div>
-            <div class="form-row">
+            <div class="form-row col-12">
+
                 <div class="form-group col-12 col-md-6">
                     <label for="nombre_referente">Nombre del Referente</label>
                     <input type="text" class="form-control" id="nombre_referente" name="nombre_referente" value="{{ $provider->nombre_referente }}">
@@ -100,7 +111,8 @@
                     <input type="text" class="form-control" id="referente" name="referente" value="{{ $provider->referente }}">
                 </div>
             </div>
-            <div class="form-row">
+            <div class="form-row col-12">
+
                 <div class="form-group col-12 col-md-6">
                     <label for="cargo">Cargo</label>
                     <input type="text" class="form-control" id="cargo" name="cargo" value="{{ $provider->cargo }}">
@@ -110,7 +122,8 @@
                     <input type="text" class="form-control" id="cuit" name="cuit" value="{{ $provider->cuit }}">
                 </div>
             </div>
-            <div class="form-row">
+            <div class="form-row col-12">
+
                 <div class="form-group col-12 col-md-6">
                     <label for="matricula_inaes">Matrícula INAES</label>
                     <input type="text" class="form-control" id="matricula_inaes" name="matricula_inaes" value="{{ $provider->matricula_inaes }}">
@@ -134,7 +147,8 @@
                     <input type="checkbox" id="inscriptos_sipro" name="inscriptos_sipro" {{ $provider->inscriptos_sipro ? 'checked' : '' }}>
                 </div>
             </div>
-            <div class="form-row">
+            <div class="form-row col-12">
+
                 <div class="form-group col-12 col-md-6">
                     <label for="cantidad_trabajadores">Cantidad de Trabajadores</label>
                     <input type="number" class="form-control" id="cantidad_trabajadores" name="cantidad_trabajadores" value="{{ $provider->cantidad_trabajadores }}">
@@ -144,7 +158,8 @@
                     <input type="number" class="form-control" id="trabajadores_mujeres_diversidades" name="trabajadores_mujeres_diversidades" value="{{ $provider->trabajadores_mujeres_diversidades }}">
                 </div>
             </div>
-            <div class="form-row">
+            <div class="form-row col-12">
+
                 <div class="form-group col-12 col-md-6">
                     <label for="porcentaje_mujeres_diversidades">Porcentaje Mujeres/Diversidades</label>
                     <input type="number" step="0.01" class="form-control" id="porcentaje_mujeres_diversidades" name="porcentaje_mujeres_diversidades" value="{{ $provider->porcentaje_mujeres_diversidades }}">
@@ -154,7 +169,8 @@
                     <input type="checkbox" id="trabajadores_discapacidad" name="trabajadores_discapacidad" {{ $provider->trabajadores_discapacidad ? 'checked' : '' }}>
                 </div>
             </div>
-            <div class="form-row">
+            <div class="form-row col-12">
+
                 <div class="form-group col-12 col-md-6">
                     <label for="escala_produccion">Escala de Producción</label>
                     <input type="number" class="form-control" id="escala_produccion" name="escala_produccion" value="{{ $provider->escala_produccion }}">
@@ -164,7 +180,8 @@
                     <input type="date" class="form-control" id="fecha_inscripcion" name="fecha_inscripcion" value="{{ $provider->fecha_inscripcion }}">
                 </div>
             </div>
-            <div class="form-row">
+            <div class="form-row col-12">
+
                 <div class="form-group col-12">
                     <label for="url">URL</label>
                     <input type="url" class="form-control" id="url" name="url" value="{{ $provider->url }}">
